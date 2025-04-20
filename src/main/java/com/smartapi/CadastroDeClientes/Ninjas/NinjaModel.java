@@ -1,6 +1,9 @@
-package com.smartapi.CadastroDeClientes;
+package com.smartapi.CadastroDeClientes.Ninjas;
 
+import com.smartapi.CadastroDeClientes.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -13,6 +16,11 @@ public class NinjaModel {
     private String email;
     private int idade;
 
+    //@ManyToOne => Um ninja uma unica missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // foreing key or chave estrangeira
+    private MissoesModel missoes;
+
     public NinjaModel() {
     }
 
@@ -20,6 +28,7 @@ public class NinjaModel {
         this.nome = nome;
         this.email = email;
         this.idade = idade;
+
     }
 
     public String getNome() {
